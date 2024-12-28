@@ -13,7 +13,7 @@ git remote add origin https://github.com/HectorADN/front-creditos-web.git
 
 git init
 git add .
-git commit -m "first commit 1.0"
+git commit -m "first commit 1.1"
 git branch -M main
 git push -u origin main
 

@@ -10,5 +10,5 @@ import { FooterComponent } from "./shared/ui/footer/footer.component";
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  title = 'front-creditos-web';
+  title = 'FrontCreditos-Web';
 }
