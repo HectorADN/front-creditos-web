@@ -1,78 +1,83 @@
 
 
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg mx-2">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500/10 dark:text-gray-400/10">
-        <thead class="text-xs text-gray-200 uppercase bg-gray-50 dark:bg-blue-700/60 dark:text-gray-400">
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg sm:mx-4">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-200">
+        <thead class="text-xs text-gray-200 uppercase bg-gray-900 dark:bg-[#5f4894c2] dark:text-gray-200">
             <tr>
                 <th scope="col" class="px-6 py-3">
                     Cliente
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Color
+                    Situación
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Category
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Price
-                </th>
-                <th scope="col" class="px-6 py-3">
-                    Action
+                    Acción
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Apple MacBook Pro 17"
-                </th>
-                <td class="px-6 py-4">
-                    Silver
-                </td>
-                <td class="px-6 py-4">
-                    Laptop
-                </td>
-                <td class="px-6 py-4">
-                    $2999
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Microsoft Surface Pro
-                </th>
-                <td class="px-6 py-4">
-                    White
-                </td>
-                <td class="px-6 py-4">
-                    Laptop PC
-                </td>
-                <td class="px-6 py-4">
-                    $1999
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Magic Mouse 2
-                </th>
-                <td class="px-6 py-4">
-                    Black
-                </td>
-                <td class="px-6 py-4">
-                    Accessories
-                </td>
-                <td class="px-6 py-4">
-                    $99
-                </td>
-                <td class="px-6 py-4">
-                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td>
-            </tr>
+
+            @for (cliente of clientes; track cliente.id){
+
+                @if ( cliente.deudor == 'true' ) {
+                    <tr class="border-b hover:bg-gray-800/70 border-gray-700 bg-black/50 transition-all">
+                        <th scope="row" class="px-2 py-4 font-bold text-gray-300 whitespace-nowrap sm:px-6 text-justify">
+                            {{ cliente.nombre }}
+                        </th>
+                        <td class="px-2 py-4 sm:px-6">
+                            <span class="text-red-500 font-bold py-1 rounded-lg px-2">Pendiente</span>
+                        </td>
+                        <td class="px-2 py-4 sm:px-6 text-center">
+                            <a href="#" class="font-bold hover:text-[#c6b9f5] hover:underline text-[#483491] transition-all">Ver</a>
+                        </td>
+                    </tr>
+                } @else {
+                    
+                    <tr class="border-b hover:bg-gray-800/70 border-gray-700 bg-black/50 transition-all">
+                        <th scope="row" class="px-2 py-4 font-bold text-gray-300 whitespace-nowrap sm:px-6 text-justify">
+                            {{ cliente.nombre }}
+                        </th>
+                        <td class="px-2 py-4 sm:px-6">
+                            <span class="text-green-400 font-bold py-1 rounded-lg px-7">Ok !</span>
+                        </td>
+                        <td class="px-2 py-4 sm:px-6 text-center">
+                            <a href="#" class="font-bold hover:text-[#c6b9f5] hover:underline text-[#483491] transition-all">Ver</a>
+                        </td>
+                    </tr>
+                }
+            }
+
+
+            <!-- <div *ngFor="let cliente of clientes" class="card-cliente">
+                <div class="card-cliente-header">
+                    {{ cliente.id }} - <span class="cliente-deudor-{{ cliente.deudor }}"> {{ cliente.nombre }} </span> - {{ cliente.descripcion }}
+                </div>
+                <div class="card-cliente-body">
+                    <a class="link-add" [routerLink]="['/newpedido/'+cliente.id+'/'+cliente.nombre]">+Pedido</a>
+                    <a class="link-add" [routerLink]="['/newpago/'+cliente.id+'/'+cliente.nombre]">+Pago</a>
+                    <a class="link-add" [routerLink]="['/newtraspaso/'+cliente.id+'/'+cliente.nombre]">+Traspaso envase</a>
+                    <a [routerLink]="['/pagosporcliente/'+cliente.id+'/'+cliente.nombre]">Ver Pagos</a>
+                    <a [routerLink]="['/pedidos/'+cliente.id+'/'+cliente.nombre]">Ver Pedidos</a>
+                    <a [routerLink]="['/traspasobycliente/'+cliente.id+'/'+cliente.nombre]">Ver traspasos</a>
+                </div>
+                <ng-container *ngIf="cliente.envases">
+    
+                    <div *ngFor="let envase of cliente.envases" class="lista-envases">
+                        <div>{{ envase.envase }}</div>
+                        <div>{{ envase.situacion }}</div>
+                        <div>{{ envase.cantidad }}</div>                        
+                    </div>
+    
+                </ng-container>
+    
+            </div> -->
+
+
+
+
+
+
+
         </tbody>
     </table>
 </div>
