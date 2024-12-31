@@ -28,7 +28,7 @@
                             <span class="text-red-500 font-bold py-1 rounded-lg px-2">Pendiente</span>
                         </td>
                         <td class="px-2 py-4 sm:px-6 text-center">
-                            <a href="#" class="font-bold hover:text-[#c6b9f5] hover:underline text-[#483491] transition-all">Ver</a>
+                            <a routerLink="/client/{{ cliente.id }}" class="font-bold hover:text-[#c6b9f5] hover:underline text-[#483491] transition-all">Ver</a>
                         </td>
                     </tr>
                 } @else {
@@ -41,7 +41,7 @@
                             <span class="text-green-400 font-bold py-1 rounded-lg px-7">Ok !</span>
                         </td>
                         <td class="px-2 py-4 sm:px-6 text-center">
-                            <a href="#" class="font-bold hover:text-[#c6b9f5] hover:underline text-[#483491] transition-all">Ver</a>
+                            <a routerLink="/client/{{ cliente.id }}" class="font-bold hover:text-[#c6b9f5] hover:underline text-[#483491] transition-all">Ver</a>
                         </td>
                     </tr>
                 }

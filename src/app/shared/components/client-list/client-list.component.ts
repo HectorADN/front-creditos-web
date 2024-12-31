@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Cliente } from '../../../interfaces/cliente.interface';
 import { ApiService } from '../../../services/api-service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-client-list',
   standalone: true,
-  imports: [],
+  imports: [ RouterLink ],
   templateUrl: './client-list.component.html',
 })
 export class ClientListComponent {

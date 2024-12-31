@@ -22,5 +22,12 @@ export class ApiService {
     this.myUrl = `${ this.apiUrl }/listaclientesjson`;
     return this.http.get<Cliente[]>(this.myUrl);
   }
+
+  // Listo
+  getClientById( id: string ): Observable<Cliente>{
+    // alert('Consultando Api REST!');
+    this.myUrl = `${ this.apiUrl }/clienteporid/${id}`;
+    return this.http.get<Cliente>(this.myUrl);
+  }
   
 }
