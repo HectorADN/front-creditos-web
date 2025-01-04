@@ -3,17 +3,20 @@ import { ApiService } from '../../services/api-service';
 import { ActivatedRoute } from '@angular/router';
 import { Cliente } from '../../interfaces/cliente.interface';
 import { LastFivesPedidosComponent } from "../../shared/components/last-fives-pedidos/last-fives-pedidos.component";
+import { LastFivesPagosComponent } from "../../shared/components/last-fives-pagos/last-fives-pagos.component";
+import { LastFivesTraspasosComponent } from "../../shared/components/last-fives-traspasos/last-fives-traspasos.component";
 
 
 @Component({
   selector: 'app-client-view',
   standalone: true,
-  imports: [LastFivesPedidosComponent],
+  imports: [LastFivesPedidosComponent, LastFivesPagosComponent, LastFivesTraspasosComponent],
   templateUrl: './client-view.component.html',
 })
+
 export class ClientViewComponent {
 
-  private clientId: string = '';
+  public clientId: string = '';
   
   public cliente: Cliente = {
     id: null,
